@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "PHP 2"
+		},
+		{
+			"path": "PHP 3"
 		}
 	],
 	"settings": {}

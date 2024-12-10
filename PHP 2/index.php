@@ -13,40 +13,44 @@
         [
             'name' => 'Clean Code',
             'author' => 'Martin',
-            'website' => 'https://example.com'
+            'website' => 'https://example.com',
+            'releaseYear' => 2010
         ],
         [
             'name' => 'JavaScript Next',
             'author' => 'Raju',
-            'website' => 'https://example.com'
+            'website' => 'https://example.com',
+            'releaseYear' => 2019
         ],
         [
             'name' => 'PHP8 Objects, Patterns and Practice',
             'author' => 'Matt',
-            'website' => 'https://example.com'
+            'website' => 'https://example.com',
+            'releaseYear' => 2022
         ],
         [
             'name' => 'Clean Architecture',
             'author' => 'Martin',
-            'website' => 'https://example.com'
+            'website' => 'https://example.com',
+            'releaseYear' => 2010
         ]
 
     ];
-    function filterByAuthor($books, $author)
+    $filter = function ($items, $key, $value)
     {
         $filteredBooks = [];
-        foreach ($books as $book) {
-            if ($book['author'] === $author) {
-                $filteredBooks[] = $book;
+        foreach ($items as $item) {
+            if ($item[$key] === $value) {
+                $filteredBooks[] = $item;
             }
         }
         return $filteredBooks;
-    }
+    };
     ?>
     <h1>Recommended Books</h1>
 
     <ul>
-        <?php foreach (filterByAuthor($books, 'Raju') as $book): ?>
+        <?php foreach ($filter($books,'name','Clean Code') as $book): ?>
             <li>
                 <a href="<?= $book['website'] ?>">
                     <div><?= $book['name'] ?> | Author: <?= $book['author'] ?></div>
