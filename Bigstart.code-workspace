@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "PHP 1"
+		},
+		{
+			"path": "PHP 2"
 		}
 	],
 	"settings": {}
