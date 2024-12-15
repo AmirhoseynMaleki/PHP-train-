@@ -1,0 +1,15 @@
+.bg {
+    background: url(../assets/img/rape-blossom-502973_1920-1.jpg) no-repeat;
+    background-size: cover;
+}
+
+.masthead-avatar {
+    border-radius: 50%;
+    box-shadow: 1px 1px 25px 5px #000;
+    border: 10px solid #fff;
+
+}
+
+.bg-gold {
+    background-color: rgb(232, 208, 49);
+}
