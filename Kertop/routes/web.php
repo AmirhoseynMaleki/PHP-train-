@@ -1,12 +1,34 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Models\Message;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
-Route::view('/','pages.welcome',['title'=>'Golden Farm']);
-Route::view('/about','pages.about',['title'=>'Golden Farm']);
-Route::view('/products','pages.products',['title'=>'Golden Farm']);
-Route::view('/contact','pages.contact',['title'=>'Golden Farm']);
+Route::view('/', 'pages.welcome', ['title' => 'Golden Farm']);
+Route::view('/about', 'pages.about', ['title' => 'Golden Farm']);
+Route::view('/products', 'pages.products', ['title' => 'Golden Farm']);
+Route::view('/contact', 'pages.contact', ['title' => 'Golden Farm','messages'=>Message::all()]);
+Route::post('/contact', function (Request $request) {
+    // DB::table('messages')->insert([
+    //     'fullName' => $request->fullName,
+    //     'email' => $request->email,
+    //     'phone' => $request->phone,
+    //     'message' => $request->message,
+    // ]);
+    // Message::create($request->all());
+    $message = new Message;
+    $message->email = $request->email;
+    $message->fullName = $request->fullName;
+    $message->phone = $request->phone;
+    $message->message = $request->message;
+    $message->save();
+
+    $messages = Message::all();
+
+    return view('pages.contact')->with(['title' => 'Golden Farm','messages'=>$messages]);
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -18,4 +40,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
